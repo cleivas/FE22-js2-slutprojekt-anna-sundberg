@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "parcel ./src/index.html ./src/html/profile.html ./src/html/userPage.html",
-    "build": "parcel build ./src/index.html ./src/html/profile.html ./src/html/userPage.html --public-url /oiuytrfde/  --dist-dir docs",
+    "build": "parcel build ./src/index.html ./src/html/profile.html ./src/html/userPage.html --dist-dir docs --public-url /oiuytrfde/",
     "clean": "del-cli ./.parcel-cache ./docs ./dist"
   },
 
