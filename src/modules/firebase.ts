@@ -46,7 +46,8 @@ export async function listAllUsers(userListDiv: HTMLDivElement) {
                     localStorage.setItem('viewUserAvatar', avatar)
                     localStorage.setItem('viewedUserId', usersId)
                     setTimeout(() => {
-                        location.assign('../html/userPage.html')
+                        window.location.href = "../html/userPage.html"
+                        // location.assign('../html/userPage.html')
                     }, 100);
                 })
             }

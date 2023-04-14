@@ -81,7 +81,8 @@ listAllUsers(usersContainer);
 removeBtn.addEventListener('click', () => {
     deleteUser(currentId, container);
     setTimeout(() => {
-        location.assign('../html.html')
+        window.location.href = "../html.html"
+        // location.assign('../html.html')
     }, 300);
 })
 
