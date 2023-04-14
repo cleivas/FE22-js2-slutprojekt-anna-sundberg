@@ -1,5 +1,5 @@
-import { url } from "./firebase";
-import { firebaseUser } from "./firebase";
+import { url } from "./src/modules/firebase";
+import { firebaseUser } from "./src/modules/firebase";
 
 let userAvatar:string = '';
 
@@ -28,15 +28,15 @@ signUp.addEventListener('click', () => {
     signIn.style.display = 'none';
     submitBtn.innerText = "Create User";
     const koala = document.createElement('img');
-    let koalaUrl = new URL('../media/koala.svg', import.meta.url);
+    let koalaUrl = new URL('./src/media/koala.svg', import.meta.url);
     koala.src = koalaUrl.href;
 
     const duck = document.createElement('img');
-    let duckUrl = new URL('../media/duck.svg', import.meta.url);
+    let duckUrl = new URL('./src//media/duck.svg', import.meta.url);
     duck.src = duckUrl.href;
 
     const penguin = document.createElement('img');
-    let penguinUrl = new URL('../media/penguin.svg', import.meta.url);
+    let penguinUrl = new URL('./src/media/penguin.svg', import.meta.url);
     penguin.src = penguinUrl.href;
 
     const text = document.createElement('h3');
