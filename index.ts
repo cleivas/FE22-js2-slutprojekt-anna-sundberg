@@ -106,9 +106,9 @@ async function checkUser() {
                 localStorage.setItem('id', userId);
             
                 setTimeout(() => {
-                    window.location.href = "../html/profile.html"
-                // location.assign("../html/profile.html");
-                }, 1000);
+                    // window.location.href = "../html/profile.html"
+                location.assign("./html/profile.html");
+                }, 400);
                 break
             }
             
