@@ -107,7 +107,7 @@ async function checkUser() {
             
                 setTimeout(() => {
                     // window.location.href = "../html/profile.html"
-                location.assign("./html/profile.html");
+                location.assign("/src/html/profile.html");
                 }, 400);
                 break
             }
@@ -178,7 +178,7 @@ async function checkUser() {
         localStorage.setItem('password', passwordInput.value);
         localStorage.setItem('avatar', userAvatar);
         setTimeout( () => {
-            window.location.href = "../html/profile.html"
+            window.location.href = "/src/html/profile.html"
             // location.assign('../html/profile.html')
         }, 600)
     }
