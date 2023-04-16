@@ -111,7 +111,7 @@ async function checkUser() {
                     localStorage.setItem('id', userId);
 
                     setTimeout(() => {
-                        location.assign("../html/profile.html");
+                        location.assign("./html/profile.html");
                     }, 400);
                     break
                 }
@@ -186,7 +186,7 @@ async function checkUser() {
         localStorage.setItem('password', passwordInput.value);
         localStorage.setItem('avatar', userAvatar);
         setTimeout(() => {
-            location.assign('../html/profile.html')
+            location.assign('./html/profile.html')
         }, 600)
     }
 }
