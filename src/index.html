@@ -17,9 +17,9 @@
         <button id="sign-up">I'm not a user, sign up</button>
     </div>
         <div id="user-input">
-            <form action="">
+            <form id="input-form">
             <label for="username">Username:</label>
-            <input id="username" type="text">
+            <input id="username" required type="text">
             <label for="password">Password:</label>
             <input id="password" required type="password">
             <button id="submit-btn">Submit</button>
@@ -28,6 +28,7 @@
                 Back to login
                 </a>
             </button>
+            <p id="error-message"></p>
         </form>
 
 </body>

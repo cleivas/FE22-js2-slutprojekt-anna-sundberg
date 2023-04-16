@@ -67,33 +67,6 @@ export async function deleteUser(id, container: HTMLDivElement) {
     container.innerHTML = '';
 }
 
-// export async function getId(user) {
-
-//     const response = await fetch(url + '.json');
-//     const data = await response.json();
-//     console.log(data);
-
-//     const usersArray = Object.values(data);
-//     const keyArr = Object.keys(data);
-
-//     getUserId(usersArray)
-//     function getUserId(array) {
-//         let i = 0;
-
-//         array.forEach((list: firebaseUser) => {
-//             const { username } = list;
-
-//             if (username === user) {
-//                 const userId = keyArr[i];
-//                 console.log(userId);
-//                 localStorage.setItem('id', userId);
-
-//             }
-//             i++;
-//         })
-//     }
-// }
-
 //remove all posts from logged in user
 export async function deletePosts(userId) {
     const response = await fetch(url + `/${userId}/posts.json`, { method: 'DELETE' });

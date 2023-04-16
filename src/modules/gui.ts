@@ -17,3 +17,18 @@ export function showPosts(arr, container:HTMLDivElement) {
     });
 
 }
+
+export function showViewedUsersPosts(arr, container:HTMLDivElement) {
+    
+    container.innerHTML = '';
+
+    arr.forEach((element: String) => {
+        const postDiv = document.createElement('div');
+        postDiv.classList.add('post-card');
+        const postTxt = document.createElement('p');
+        postTxt.innerText = `${element}`;
+        postDiv.append(postTxt)
+        container.prepend(postDiv);
+    });
+
+}

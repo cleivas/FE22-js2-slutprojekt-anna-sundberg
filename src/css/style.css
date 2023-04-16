@@ -1,3 +1,7 @@
+* {
+    text-align: center;
+}
+
 body {
     font-size: 16px;
     color: #333;
@@ -5,23 +9,37 @@ body {
     background-color: #f3ffe1;
 }
 
+#profile-body {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+
 img {
     max-height: 100px;
     margin: 10;
 }
 
-/* header style */
-header {
-    /* background-color: #c1fba4; */
-    /* padding: 10px; */
-    margin-bottom: 20px;
-    /* font-family: 'Finger Paint', cursive; */
-    font-family: 'Londrina Shadow', cursive;
-    font-size: 40px;
-    color: #7BF1A8
+form {
+    margin-top: 50px;
 }
 
-/* user-input form style */
+header {
+    margin-bottom: 20px;
+    font-family: "Londrina Shadow", cursive;
+    font-size: 40px;
+    color: #7bf1a8;
+}
+
+h2 {
+    font-family: "Londrina Shadow", cursive;
+    font-size: 40px;
+    color: #7bf1a8;
+    background-color: #dfffd6;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
 #user-input {
     display: none;
     border: 2px solid black;
@@ -32,100 +50,29 @@ header {
     flex-flow: column wrap;
 }
 
-/* #user-input label {
-    display: block;
-    margin-bottom: 10px;
-} */
-/* 
-#user-input input[type="text"],
-#user-input input[type="password"] {
-    padding: 5px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-#user-input input[type="text"]:focus,
-#user-input input[type="password"]:focus {
-    outline: none;
-    border-color: #007bff;
-}
-
-*/
-
 #user-input button {
     display: flex;
     margin: 10px auto;
     padding: 10px;
     font-size: 16px;
-    background-color:#7BF1A8; 
+    background-color: #7bf1a8;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-} 
-
-
-/* CSS for profile.html */
-
-/* set default font size and color */
-body {
-    font-size: 16px;
-    color: #333;
 }
 
-/* header style */
-/* h3 {
-    background-color: #dfffd6;
-    padding: 10px;
-    margin-bottom: 20px;
-} */
-
-h2{
-    font-family: 'Londrina Shadow', cursive;
-    font-size: 40px;
-    color: #7BF1A8;
-    background-color: #dfffd6;
-    padding: 10px;
-    margin-bottom: 20px;
-}
-
-/* profile-container style */
 #profile-container {
     display: flex;
     margin-bottom: 20px;
     flex-flow: column;
-    /* justify-content: space-between; */
 }
-
-#profile-container img{
-  max-height: 100px;
-}
-
-/* #username-txt {
-    font-size: 35px;
-    margin-bottom: 10px;
-} */
-
-
-
-/* #back {
-    margin: 10 auto;
-    padding: 10px;
-    font-size: 16px;
-    background-color:#7BF1A8; 
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-} */
 
 #profile-container button {
     margin: 10 auto;
     padding: 10px;
     font-size: 16px;
-    background-color:#7BF1A8; 
+    background-color: #7bf1a8;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -137,20 +84,12 @@ h2{
     background-color: #f8bbd0;
 }
 
-#profile-container #remove-btn, #profile-container #remove-posts {
+#profile-container #remove-btn,
+#profile-container #remove-posts {
     background-color: #dc3545;
 }
 
-#log-out a, #back a {
-    color: white; 
-    text-decoration: none;
-}
-  
-
-
-/* post-container style */
 #post-container {
-    /* margin-top: 100px;  */
     margin-bottom: 20px;
     align-items: center;
 }
@@ -178,14 +117,13 @@ h2{
     margin: 10 auto;
     padding: 10px;
     font-size: 16px;
-    background-color: #7BF1A8;
+    background-color: #7bf1a8;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-/* post-card style */
 .post-card {
     margin: 10 auto;
     padding: 10px;
@@ -195,17 +133,12 @@ h2{
     border-radius: 5px;
 }
 
-#post-card{
+#post-card {
     background-color: #dfffd6;
 }
 
-/* other-users-container style */
 #other-users-container {
     margin-bottom: 20px;
-}
-
-* {
-    text-align: center;
 }
 
 #user-choice {
@@ -214,7 +147,6 @@ h2{
     flex-flow: column;
 }
 
-/* user-choice buttons style */
 #user-choice button {
     padding: 10px;
     margin: 10 auto;
@@ -234,19 +166,12 @@ h2{
     cursor: pointer;
 }
 
-
-#profile-body {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
-}
-
-
-
-.other-users-posts{
+.other-users-posts {
     width: 500px;
 }
 
-form{
-    margin-top: 50px; 
+a #log-out,
+#back a {
+    color: white;
+    text-decoration: none;
 }

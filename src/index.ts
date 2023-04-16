@@ -1,7 +1,8 @@
 import { url } from "./modules/firebase";
-import { firebaseUser } from "./modules/firebase";
 
-let userAvatar:string = '';
+let userAvatar: string = '';
+let newUser: boolean;
+let addNewUser: boolean;
 
 //when clicking sign in
 const signIn = document.querySelector('#sign-in') as HTMLButtonElement;
@@ -18,10 +19,11 @@ signIn.addEventListener('click', () => {
 //when clicking sign up
 const submitBtn = document.querySelector('#submit-btn') as HTMLButtonElement;
 const signUp = document.querySelector('#sign-up') as HTMLButtonElement;
-let newUser: boolean = false;
+
 signUp.addEventListener('click', () => {
     newUser = true;
-    signUp.style.display = 'none'; 
+    console.log(newUser)
+    signUp.style.display = 'none';
     signInDiv.style.display = 'flex';
     const avatarDiv = document.createElement('div');
     console.log("OK, du ska skapa en user");
@@ -54,7 +56,7 @@ signUp.addEventListener('click', () => {
 
     duck.addEventListener('click', () => {
         console.log("You chose duck")
-        userAvatar = 'https://www.reshot.com/preview-assets/icons/RYZ2P59AGC/duck-RYZ2P59AGC.svg'; 
+        userAvatar = 'https://www.reshot.com/preview-assets/icons/RYZ2P59AGC/duck-RYZ2P59AGC.svg';
         koala.style.display = 'none';
         penguin.style.display = 'none';
     })
@@ -68,98 +70,104 @@ signUp.addEventListener('click', () => {
 });
 
 //när man ska logga in eller skapa - kolla användarnamn o lösen
-submitBtn.addEventListener('click', (event) => {
+const inputForm = document.querySelector('#input-form') as HTMLFormElement;
+inputForm.addEventListener('submit', (event) => {
     event.preventDefault();
     checkUser();
 })
 
-let addNewUser: boolean = false;
 async function checkUser() {
     let usernameInput = document.querySelector('#username') as HTMLInputElement;
     let passwordInput = document.querySelector('#password') as HTMLInputElement;
+    const error = document.querySelector('#error-message') as HTMLElement;
 
     const response = await fetch(url + '.json');
     const data = await response.json();
     console.log(data);
+
     const usersArray = Object.values(data);
     const keyArr = Object.keys(data);
 
     if (newUser == false) {
-        
 
-        for (let i = 0; i < usersArray.length; i++) {
-            
-            const { username, password, avatar } = usersArray[i];
+        checkLogin(usersArray)
+        function checkLogin(array) {
 
-            if (usernameInput.value == '' || passwordInput.value == '') {
-                alert('fyll i alla inputs');
-                break;
+            for (let i = 0; i < array.length; i++) {
+
+                const { username, password, avatar } = array[i];
+
+                if (usernameInput.value != username || passwordInput.value != password) {
+                    error.innerText = "Wrong username or password";
+                }
+
+                else if (usernameInput.value == username && passwordInput.value == password) {
+                    error.innerText = '';
+                    console.log('hittade user');
+                    const userId = keyArr[i];
+                    localStorage.setItem('user', usernameInput.value);
+                    localStorage.setItem('password', passwordInput.value);
+                    localStorage.setItem('avatar', avatar);
+                    localStorage.setItem('id', userId);
+
+                    setTimeout(() => {
+                        location.assign("../html/profile.html");
+                    }, 400);
+                    break
+                }
+                else {
+                    console.log('ingen user hittades')
+                    error.innerText = "no user found :("
+                }
             }
-            
-            if (usernameInput.value == username && passwordInput.value == password) {
-                console.log('hittade user');
-                console.log(username, password, avatar, keyArr[i]);
-                const userId = keyArr[i];
-                localStorage.setItem('user', usernameInput.value);
-                localStorage.setItem('password', passwordInput.value);
-                localStorage.setItem('avatar', avatar);
-                localStorage.setItem('id', userId);
-            
-                setTimeout(() => {
-                    // window.location.href = "../html/profile.html"
-                location.assign("src/html/profile.html");
-                }, 400);
-                break
-            }
-            
-            else
-                console.log('ingen user hittades')
         }
     }
-    else if (newUser == true) {
-        for (let i = 0; i < usersArray.length; i++) {
-            //TS klagar här men det fungerar ändå:
-            const { username, password, avatar } = usersArray[i];
 
-            console.log(usernameInput.value, username, passwordInput.value, password);
+    if (newUser == true) {
+        signUpNewUser(usersArray)
 
-            if (usernameInput.value == '' || passwordInput.value == '' || userAvatar == '') {
-                alert('fyll i alla inputs');
-                break;
-            }
+        function signUpNewUser(array) {
 
-            if (usernameInput.value == username && passwordInput.value == password) {
-                console.log('did you mean to sign in instead?');
-                addNewUser = false;
-                break;
-            }
-            else if (usernameInput.value == username) {
-                console.log('user already exists, try a different username');
-               addNewUser = false;
-                break
-            }
+            for (let i = 0; i < array.length; i++) {
 
-            else if (usernameInput.value != username ) {
-                console.log('ingen user hittades, ny skall skapas')
-                addNewUser = true;
+                const { username, password } = array[i]
+
+                if (usernameInput.value == '' || passwordInput.value == '' || userAvatar == '') {
+                    alert('fyll i alla inputs');
+                    break;
+                }
+                if (usernameInput.value == username && passwordInput.value == password) {
+                    console.log('did you mean to sign in instead?');
+                    error.innerText = "User already exists, did you mean to sign in instead?"
+                    addNewUser = false;
+                    break;
+                }
+                else if (usernameInput.value == username) {
+                    console.log('user already exists, try a different username');
+                    error.innerText = "This name is taken :("
+                    addNewUser = false;
+                    break
+                }
+
+                else if (usernameInput.value != username) {
+                    console.log('ingen user hittades, ny skall skapas')
+                    addNewUser = true;
+                }
             }
-            
         }
-
-        
     }
 
-    if(addNewUser == true){
+    if (addNewUser == true) {
 
         const createUser = {
             username: usernameInput.value,
             password: passwordInput.value,
             avatar: userAvatar,
-            }
+        }
 
         addUser(createUser);
 
-        async function addUser(obj:object) {
+        async function addUser(obj: object) {
 
             const init = {
                 method: 'POST',
@@ -173,15 +181,13 @@ async function checkUser() {
             const data = await response.json();
             console.log(data);
         }
-    
+
         localStorage.setItem('user', usernameInput.value)
         localStorage.setItem('password', passwordInput.value);
         localStorage.setItem('avatar', userAvatar);
-        setTimeout( () => {
-            window.location.href = "src/html/profile.html"
-            // location.assign('../html/profile.html')
+        setTimeout(() => {
+            location.assign('../html/profile.html')
         }, 600)
     }
 }
-
 

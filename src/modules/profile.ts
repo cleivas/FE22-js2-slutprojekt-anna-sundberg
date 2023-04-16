@@ -1,10 +1,5 @@
-import { viewProfile } from "./gui";
-import { listAllUsers } from "./firebase";
-import { url } from "./firebase";
-import { firebaseUser } from "./firebase";
-import { deleteUser } from "./firebase";
-import { deletePosts } from "./firebase";
-import { showPosts } from "./gui";
+import { viewProfile, showPosts } from "./gui";
+import { listAllUsers, url, firebaseUser, deleteUser, deletePosts } from "./firebase";
 
 getProfile();
 setTimeout(() => {
@@ -28,11 +23,10 @@ removeBtn.addEventListener('click', () => {
     deleteUser(currentId, container);
     setTimeout(() => {
         window.location.href = "../html.html"
-        // location.assign('../html.html')
     }, 300);
 })
 
-//delete all your posts
+//delete all currentUsers posts
 const deletePostsBtn = document.querySelector('#remove-posts') as HTMLButtonElement;
 deletePostsBtn.addEventListener('click', () => {
     deletePosts(currentId);
